@@ -64,6 +64,12 @@ public:
    */
   void UpdateEKF(const Eigen::VectorXd &z);
 
+private:
+  void Update_(const Eigen::VectorXd &y);
+
+  Eigen::VectorXd ComputeRadarMeasurementFromState_();
+  Eigen::VectorXd NormalizeAngleInRadarMeasurement_(const Eigen::VectorXd&);
+
 };
 
 #endif /* KALMAN_FILTER_H_ */
