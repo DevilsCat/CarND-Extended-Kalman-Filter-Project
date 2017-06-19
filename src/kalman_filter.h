@@ -65,11 +65,24 @@ public:
   void UpdateEKF(const Eigen::VectorXd &z);
 
 private:
+  /**
+   * Updates Kalman filter given the measurement error vector.
+   * @param y The measurement error vector.
+   */
   void Update_(const Eigen::VectorXd &y);
 
+  /**
+   * Computes the radar measurement from current state x_.
+   * @return The computed radar measurement vector.
+   */
   Eigen::VectorXd ComputeRadarMeasurementFromState_();
-  Eigen::VectorXd NormalizeAngleInRadarMeasurement_(const Eigen::VectorXd&);
 
+  /**
+   * Normalizes the theta in the radar measurement error vector.
+   * @param  z The measurement error vector.
+   * @return   The normalized measurement error vector.
+   */
+  Eigen::VectorXd NormalizeThetaInRadarMeasurementError_(const Eigen::VectorXd& z);
 };
 
 #endif /* KALMAN_FILTER_H_ */

@@ -34,7 +34,7 @@ void KalmanFilter::Update(const VectorXd &z) {
 
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
   VectorXd z_pred = ComputeRadarMeasurementFromState_();
-  VectorXd y = NormalizeAngleInRadarMeasurement_(z - z_pred);
+  VectorXd y = NormalizeThetaInRadarMeasurementError_(z - z_pred);
   Update_(y);
 }
 
@@ -72,7 +72,7 @@ VectorXd KalmanFilter::ComputeRadarMeasurementFromState_() {
   return z;
 }
 
-VectorXd KalmanFilter::NormalizeAngleInRadarMeasurement_(const VectorXd& z) {
+VectorXd KalmanFilter::NormalizeThetaInRadarMeasurementError_(const VectorXd& z) {
   VectorXd z_norm = z;
 
   // Normalize theta to -pi -> pi.
